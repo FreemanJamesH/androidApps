@@ -16,12 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         double currencyDouble = Double.parseDouble("0" + currency.getText().toString());
         double times80 = currencyDouble * 80;
-        String stringified = String.valueOf(times80);
-
-        Log.i("Info", "Amount entered: " + currencyDouble);
-        Log.i("Converted to yen:", "Y" + currencyDouble * 80);
-
-        Toast.makeText(MainActivity.this, stringified, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "¥"+String.format("%.2f", times80), Toast.LENGTH_SHORT).show();
 
     }
 
