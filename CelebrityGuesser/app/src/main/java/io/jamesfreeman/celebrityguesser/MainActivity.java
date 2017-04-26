@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     Button button3;
     ImageView downloadedImage;
     int correctChoice;
-    CelebGetterTask task = new CelebGetterTask();
 
     public class Celebrity{
         private String name;
@@ -165,6 +164,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        CelebGetterTask task = new CelebGetterTask();
+
         button0 = (Button) findViewById(R.id.button0);
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
@@ -177,25 +178,24 @@ public class MainActivity extends AppCompatActivity {
         try {
             System.out.println("trying");
             result = task.execute("http://www.posh24.se/kandisar").get();
+            String escaped = result.replace("\n", "");
+
+            Pattern p = Pattern.compile("<img src=\"http://cdn.posh24.se/images/:profile(.*?)/>");
+            Matcher m = p.matcher(escaped);
+
+            while (m.find()){
+                int indexFirstQuote = m.group(1).indexOf("\"");
+                String imageUrl = m.group(1).substring(0,indexFirstQuote);
+                String celebName = m.group(1).substring(indexFirstQuote+7, m.group(1).length()-1);
+                Celebrity celeb = new Celebrity(celebName, imageUrl);
+
+                celebArray.add(celeb);
+
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        }
-
-        String escaped = result.replace("\n", "");
-
-        Pattern p = Pattern.compile("<img src=\"http://cdn.posh24.se/images/:profile(.*?)/>");
-        Matcher m = p.matcher(escaped);
-
-        while (m.find()){
-            int indexFirstQuote = m.group(1).indexOf("\"");
-            String imageUrl = m.group(1).substring(0,indexFirstQuote);
-            String celebName = m.group(1).substring(indexFirstQuote+7, m.group(1).length()-1);
-            Celebrity celeb = new Celebrity(celebName, imageUrl);
-
-            celebArray.add(celeb);
-
         }
 
         loadFourCelebrities();
