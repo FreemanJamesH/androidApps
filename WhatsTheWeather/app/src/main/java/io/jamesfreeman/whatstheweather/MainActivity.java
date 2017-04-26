@@ -1,9 +1,11 @@
 package io.jamesfreeman.whatstheweather;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -71,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Button clicked");
         WeatherDownload task = new WeatherDownload();
         String city = editText.getText().toString();
-        System.out.println("City: "+ city);
+
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
         try {
             String weatherData = task.execute("http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=4066ecaf6e81ebad1d9583b74f0c94cc").get();
