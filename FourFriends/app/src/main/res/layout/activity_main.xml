@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.jamesfreeman.fourfriends.MainActivity">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick a friend!"
+        android:textSize="18sp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <GridLayout
+        android:layout_width="345dp"
+        android:layout_height="467dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:columnCount="1"
+        android:rowCount="4"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-95dp">
+
+        <Button
+            android:id="@+id/sashyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="visitSashy"
+            android:text="Visit Sashy!" />
+
+        <Button
+            android:id="@+id/mayaButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="visitMaya"
+            android:text="Visit Maya!" />
+
+        <Button
+            android:id="@+id/lisaButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="visitLisa"
+            android:text="Visit Lisa!" />
+
+        <Button
+            android:id="@+id/cooperButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="visitCooper"
+            android:text="Visit Cooper!" />
+    </GridLayout>
+</android.support.constraint.ConstraintLayout>
